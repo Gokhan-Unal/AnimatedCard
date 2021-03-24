@@ -1,0 +1,163 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-dark: rgb(13, 17, 19);
+  --clr-light: #fff;
+  --clr-accent: rgb(222, 52, 0);
+  --clr-accent-dark: rgb(163, 38, 0);
+  --clr-secondary: rgb(0, 62, 163);
+
+  --border-radius: 0.5em;
+  --transition: transform 200ms cubic-bezier(0.34, 0.99, 0.75, 1);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--clr-dark);
+  color: var(--clr-light);
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.game {
+  position: relative;
+  width: 12.5em; //200px
+}
+
+.streamers {
+  display: flex;
+
+  img {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+  }
+}
+
+.rank {
+  position: absolute;
+  z-index: 1;
+  right: 1em;
+  top: 0;
+  font-weight: bold;
+  font-size: 1.125rem;
+  background: rgba($color: #000000, $alpha: 0.75);
+  padding: 0.5em 0.5em 0.75em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  transition: var(--transition);
+}
+
+.front {
+  transition: 250ms;
+  .thumbnail {
+    border-radius: var(--border-radius);
+  }
+  .name {
+    margin: 0.75em 0;
+  }
+  .stats {
+    display: flex;
+    // border: 1px solid red;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .streamers img {
+    border: 1px solid var(--clr-dark);
+    isolation: isolate;
+
+    &:nth-child(1) {
+      transform: translateX(50%);
+    }
+    &:nth-child(2) {
+      transform: translateX(25%);
+    }
+  }
+}
+
+.back {
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.background {
+  background: #234;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transform: scale(0.2, 0.9);
+  border-radius: var(--border-radius);
+  opacity: 0;
+}
+
+.game:hover {
+  .rank {
+    transform: translate(130%, -80%);
+  }
+  .front {
+    transform: translateY(-30%) scale(0.8);
+
+    .name {
+      animation: gameName 250ms forwards;
+    }
+
+    .stats {
+      opacity: 0;
+    }
+  }
+
+  .back {
+    opacity: 1;
+  }
+
+  .background {
+    // only apply transition on hover state
+    transition: var(--transition), opacity 100ms linear, -webkit-transform 250ms ease-in;
+    opacity: 1;
+    transform: scale(1.4, 1.2);
+  }
+}
+
+@keyframes gameName {
+  0% {
+    text-align: left;
+    opacity: 1;
+  }
+  20% {
+    text-align: left;
+    opacity: 0;
+  }
+  50% {
+    text-align: center;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  100% {
+    text-align: center;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
