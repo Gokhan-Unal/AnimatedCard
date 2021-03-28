@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-dark: rgb(13, 17, 19);
+  --clr-light: #fff;
+  --clr-accent: rgb(222, 52, 0);
+  --clr-accent-dark: rgb(163, 38, 0);
+  --clr-secondary: rgb(0, 76, 199);
+
+  --br: 0.5em;
+
+  --transition: transform 200ms cubic-bezier(0.21, 1, 0.81, 1);
+}
+
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+}
+
+.card img {
+  width: 100%;
+  clip-path: url(#wave);
+  object-fit: cover;
+  object-position: center center;
+  height: 200px;
+}
+
+// .wave {
+//   position: absolute;
+//   top: 5rem;
+//   left: 0;
+//   width: 200%;
+//   z-index: 100;
+//   animation: wave linear 3s infinite;
+// }
+
+// @keyframes wave {
+//   0% {
+//     transform: translateX(0);
+//   }
+
+//   100% {
+//     transform: translateX(-50%);
+//   }
+// }
