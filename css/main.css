@@ -72,6 +72,8 @@ img {
   width: 2em;
   height: 2em;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .rank {
